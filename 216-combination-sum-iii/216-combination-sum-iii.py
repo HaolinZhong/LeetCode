@@ -16,8 +16,6 @@ class Solution:
             
             if D > 9: return
             
-            if curSum + D > n: return
-            
             cur.append(D)
             dfs(D + 1, curSum + D)
             cur.pop()
