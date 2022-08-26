@@ -10,8 +10,8 @@ class Solution:
         
         def dfs(D, curSum):
             
-            if curSum == n and len(cur) == k: 
-                ans.append(list(cur))
+            if curSum == n:
+                if len(cur) == k: ans.append(list(cur))
                 return
             
             if D > 9: return
