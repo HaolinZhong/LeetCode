@@ -17,7 +17,6 @@ class Solution:
                 
                 if (i > depth) and (candidates[i] == candidates[i-1]): continue
                 
-
                 cur.append(candidates[i])
                 
                 dfs(candidates[i] + curSum, i + 1)
