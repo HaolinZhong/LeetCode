@@ -4,23 +4,23 @@ class Solution:
         cur = []
         ans = []
         
+        sl = list(s)
+        
         def dfs(D):
             
-            if len(cur) == len(s):
-                ans.append("".join(cur))
+            if D == len(s):
+                ans.append("".join(sl))
                 return
             
-            if (s[D].isalpha()):
-                cur.append(s[D].lower())
+            if (sl[D].isalpha()):
+                sl[D] = sl[D].lower()
                 dfs(D + 1)
-                cur.pop()
-                cur.append(s[D].upper())
+                
+                sl[D] = sl[D].upper()
                 dfs(D + 1)
-                cur.pop()
+                
             else:
-                cur.append(s[D])
                 dfs(D+1)
-                cur.pop()
         
         dfs(0)
         
