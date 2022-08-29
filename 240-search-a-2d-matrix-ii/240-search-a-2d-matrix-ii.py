@@ -11,6 +11,7 @@ class Solution:
             return l < len(matrix[0]) and matrix[i][l] == target
         
         for i in range(len(matrix)):
+            if matrix[i][0] > target or matrix[i][-1] < target: continue
             if bs(i): return True
         
         return False
