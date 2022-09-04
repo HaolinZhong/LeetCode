@@ -6,7 +6,8 @@ class Solution:
             for n in piles:
                 T += n // k
                 if n % k != 0: T += 1
-            return T <= h
+                if T > h: return False
+            return True
         
         l, r = 1, int(1e9)
         
