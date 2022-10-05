@@ -15,6 +15,6 @@ class Solution:
                 dp[i] = -1
             else:
                 dp[i] = cur_min
-        print(dp)
+
         return dp[-1]
         
