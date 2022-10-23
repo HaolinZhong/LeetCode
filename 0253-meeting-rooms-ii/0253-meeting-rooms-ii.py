@@ -7,8 +7,7 @@ class Solution:
         
         for i in range(1, len(intervals)):
             start, end = intervals[i]
-            ind = rooms.bisect_right(start)
-            if ind == 0: 
+            if start < rooms[0]: 
                 rooms.add(end)
             else:
                 rooms.pop(0)
