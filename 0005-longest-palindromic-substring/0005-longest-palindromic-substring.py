@@ -1,29 +1,21 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         
-        res = ""
+        def findPalin(l, r):
+            while l > -1 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return s[l+1:r]
+        
+        maxlen = 0
+        maxstr = s[0]
         
         for i in range(len(s)):
-            c = 1
-            while i - c >= 0 and i + c < len(s):
-                if s[i-c] == s[i+c]: 
-                    c += 1
-                    continue
-                break
-            if 2 * c - 1 > len(res): res = s[i-c+1:i+c]
-            
-            c = 1
-            if i < len(s) - 1 and s[i+1] == s[i]:
-                while i - c >= 0 and i + 1 + c < len(s):
-                    if s[i-c] == s[i + 1 + c]: 
-                        c += 1
-                        continue
-                    break
-                
-                if 2 * c > len(res): res = s[i-c+1:i+1+c]
-            
+            cur1 = findPalin(i, i + 1)
+            cur2 = findPalin(i, i)
+            cur = cur1 if len(cur1) > len(cur2) else cur2
+            if len(cur) > maxlen:
+                maxlen = len(cur)
+                maxstr = cur
         
-        return res
-        
-            
-                
+        return maxstr
