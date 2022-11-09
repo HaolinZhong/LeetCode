@@ -5,7 +5,7 @@ class Solution:
         
         for c in t: need[c] += 1
         
-        minstr = ""
+        minstr = [0, 0]
         minlen = len(s) + 1
         
         while r < len(s):
@@ -20,7 +20,7 @@ class Solution:
             while valid == len(need):
                 if (r - l) < minlen:
                     minlen = r - l
-                    minstr = s[l:r]
+                    minstr[0], minstr[1] = l, r
                 
                 d = s[l]
                 l += 1
@@ -29,6 +29,6 @@ class Solution:
                     if window[d] == need[d] - 1:
                         valid -= 1
             
-        return minstr
+        return s[minstr[0]:minstr[1]]
             
             
