@@ -1,38 +1,34 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        # dfs topological sort
         
-        # 创建adjacency list
         al = [[] for i in range(numCourses)]
+        indeg = defaultdict(int)
         for c, pre in prerequisites:
             al[c].append(pre)
+            indeg[pre] += 1
         
-        
-        visit = defaultdict(bool)
-        onPath = defaultdict(bool)
-        res = []
-        
-        self.cyclic = False
-        
-        def dfs(i):
-            if onPath[i]:
-                self.cyclic = True
-                return
-            
-            if visit[i]: return
-            
-            visit[i] = True
-            onPath[i] = True
-            
-            for pre in al[i]:
-                dfs(pre)
-            
-            onPath[i] = False
-            res.append(i)
-        
+        q = deque()
         for i in range(numCourses):
-            dfs(i)
-            if self.cyclic: return []
+            if indeg[i] == 0: q.append(i)
+                
+        res = deque()
+        cnt = 0
         
+        while len(q) > 0:
+            for i in range(len(q)):
+                cur = q.popleft()
+                res.appendleft(cur)
+                cnt += 1
+                
+                for pre in al[cur]:
+                    indeg[pre] -= 1
+                    if indeg[pre] == 0: 
+                        q.append(pre)
+                        
+        if cnt != numCourses: return []
         return res
             
+        
+        
+        
+                        
