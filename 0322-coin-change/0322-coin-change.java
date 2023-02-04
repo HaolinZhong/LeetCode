@@ -1,34 +1,17 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
-        if (amount == 0) return 0;
+        int[] mem = new int[amount + 1];
+        Arrays.fill(mem, amount + 1);
+        mem[0] = 0;
         
-        Map<Integer, Integer> fnMap = new HashMap<>();
-        
-        for (int n : coins) {
-            fnMap.put(n, 1);   
-        }
-        
-        int curMin;
-        for (int i = 1; i < amount+1; i++) {
-            if (fnMap.containsKey(i)) continue;
-            
-            curMin = Integer.MAX_VALUE;
-            
+        for (int i = 0; i < amount+1; i++) {
             for (int n : coins) {
-                if (fnMap.containsKey(i-n)) {
-                    curMin = Math.min(fnMap.get(i-n) + 1, curMin);
+                if (i >= n) {
+                    mem[i] = Math.min(mem[i], mem[i-n] + 1);
                 }
             }
-
-            
-            
-            if (curMin != Integer.MAX_VALUE) {
-                fnMap.put(i, curMin);
-            }
         }
         
-        if (!fnMap.containsKey(amount)) return -1;
-        
-        return fnMap.get(amount);
+        return mem[amount] > amount? -1 : mem[amount];
     }
 }
