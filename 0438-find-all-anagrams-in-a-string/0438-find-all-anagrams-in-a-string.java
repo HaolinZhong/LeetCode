@@ -19,22 +19,15 @@ class Solution {
         }
         
         while (j < s.length()) {
-            if (isSame(ref, cur)) ans.add(i);
+            if (Arrays.equals(ref, cur)) ans.add(i);
             cur[s.charAt(i)-'a'] -= 1;
             cur[s.charAt(j)-'a'] += 1;
             i++;
             j++;
         }
         
-        if (isSame(ref, cur)) ans.add(i);
+        if (Arrays.equals(ref, cur)) ans.add(i);
         
         return ans;
-    }
-    
-    private boolean isSame(int[] ref, int[] cur) {
-        for (int i = 0; i < 26; i++) {
-            if (ref[i] != cur[i]) return false;
-        }
-        return true;
     }
 }
