@@ -14,7 +14,8 @@ class Solution {
         }
         String key = i + "," + s;
         if (mem.get(key) != null) return mem.get(key);
-        mem.put(key, dp(i-1, s - nums[i], nums) + dp(i-1, s + nums[i], nums));
-        return mem.get(key);
+        int ans = dp(i-1, s - nums[i], nums) + dp(i-1, s + nums[i], nums);
+        mem.put(key, ans);
+        return ans;
     }
 }
