@@ -61,13 +61,4 @@ class Solution {
         return new Node(true, false, tl, tr, bl, br);
     }
     
-    // private boolean checkSame(int i0, int j0, int n) {
-    //     int init = gd[i0][j0];
-    //     for (int i = i0; i < i0 + n; i++) {
-    //         for (int j = j0; j < j0 + n; j++) {
-    //             if 
-    //         }
-    //     }
-    // }
-    
 }
