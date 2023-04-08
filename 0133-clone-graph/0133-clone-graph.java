@@ -22,7 +22,7 @@ class Solution {
     public Node cloneGraph(Node node) {
         if (node == null) return node;
         Map<Integer, Node> map = new HashMap<>();
-        Set<Integer> cloned = new HashSet<>();
+        boolean[] cloned = new boolean[101];
         Queue<Node> q = new LinkedList<>();
         q.add(node);
         
@@ -31,7 +31,7 @@ class Solution {
             for (int i = 0; i < size; i++) {
                 Node n = q.poll();
                 
-                if (cloned.contains(n.val)) continue;
+                if (cloned[n.val]) continue;
                 
                 Node cloneN;
                 if (map.containsKey(n.val)) {
@@ -45,11 +45,11 @@ class Solution {
                         map.put(nn.val, new Node(nn.val));
                     } 
                     cloneN.neighbors.add(map.get(nn.val));
-                    if (!cloned.contains(nn.val)) {
+                    if (!cloned[nn.val]) {
                         q.add(nn);
                     }
                 }
-                cloned.add(n.val);
+                cloned[n.val] = true;
             }
         }
         
