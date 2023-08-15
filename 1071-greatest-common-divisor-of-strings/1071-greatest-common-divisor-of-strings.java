@@ -1,18 +1,14 @@
 class Solution {
     public String gcdOfStrings(String str1, String str2) {
-        int len = Math.min(str1.length(), str2.length());
-        for (int k = len; k > 0; k--) {
-            if (valid(str1, str2, k)) return str1.substring(0, k);
-        }
-        return "";
+        
+        if (!(str1 + str2).equals(str2 + str1)) return "";
+        int gcdLen = gcd(str1.length(), str2.length());
+        return str1.substring(0, gcdLen);
+        
     }
     
-    private boolean valid(String s1, String s2, int i) {
-        if (s1.length() % i == 0 && s2.length() % i == 0) {
-            String base = s1.substring(0, i);
-            return s1.replaceAll(base, "").isEmpty() && s2.replaceAll(base, "").isEmpty();
-        }
-        
-        return false;
+    private int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
     }
 }
