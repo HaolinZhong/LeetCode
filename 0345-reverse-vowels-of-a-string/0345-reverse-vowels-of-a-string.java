@@ -5,8 +5,6 @@ class Solution {
         while (i < j) {
             while (i < j && !isVowel(sca[i])) i++;
             while (i < j && !isVowel(sca[j])) j--;
-            System.out.println(i);
-            System.out.println(j);
             if (i != j) {
                 char ichar = sca[i];
                 sca[i] = sca[j];
