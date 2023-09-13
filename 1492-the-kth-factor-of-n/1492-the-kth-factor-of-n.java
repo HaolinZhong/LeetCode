@@ -20,7 +20,6 @@ class Solution {
         }
                 
         int nDiv = divisors.size();
-        System.out.println(nDiv);
         return (k <= nDiv) ? n / divisors.get(nDiv - k) : -1;
     }
 }
