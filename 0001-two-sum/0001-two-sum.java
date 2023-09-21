@@ -8,7 +8,7 @@ class Solution {
             s.put(target - n, i);
         }
         
-        return null;
+        return new int[]{0};
         
     }
 }
